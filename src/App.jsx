@@ -9,6 +9,10 @@ function Product() {
   );
 }
 
+const MyButton = () => {
+  return <button onClick={() => alert("I'm a button!")}>Click me!</button>;
+};
+
 function App() {
   return (
     <>
@@ -16,9 +20,7 @@ function App() {
         <h1>Products</h1>
 
         <Product />
-        <Product />
-        <Product />
-        <Product />
+        <MyButton />
       </div>
     </>
   );
