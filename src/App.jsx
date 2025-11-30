@@ -31,6 +31,16 @@ function App() {
     setIsOpen(!isOpen);
   };
 
+  const ClickCounter = () => {
+    const [clicks, setClicks] = useState(0);
+
+    const handleClick = () => {
+      setClicks(clicks + 1);
+    };
+
+    return <button onClick={handleClick}>Current: {clicks}</button>;
+  };
+
   return (
     <>
       <div>
@@ -58,6 +68,11 @@ function App() {
         <h2>Toggle section</h2>
         <button onClick={handleToggle}>{isOpen ? "Hide" : "Show"}</button>
         {isOpen && <p>Now you can see me!</p>}
+      </div>
+      <div>
+        <h2>Independent Click Counter</h2>
+        <ClickCounter />
+        <ClickCounter />
       </div>
     </>
   );
