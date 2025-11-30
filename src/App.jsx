@@ -1,4 +1,5 @@
 import "./App.css";
+import { useState } from "react";
 
 function Product() {
   return (
@@ -13,10 +14,23 @@ const MyButton = () => {
   return <button onClick={() => alert("I'm a button!")}>Click me!</button>;
 };
 
+const CustomButton = ({ message, children }) => {
+  return <button onClick={() => alert(message)}>{children}</button>;
+};
+
 function App() {
+  const [clicks, setClicks] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
+
   const handleClick = (evt) => {
     console.log(evt);
+    setClicks(clicks + 1);
   };
+
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <>
       <div>
@@ -29,8 +43,21 @@ function App() {
         </button>
       </div>
       <div>
-        <button onClick={handleClick}>First button</button>
+        <button onClick={handleClick}>First button with handleClick</button>
         <button onClick={(evt) => console.log(evt)}>Second button</button>
+      </div>
+      <div>
+        <CustomButton message="Playing music!">Play some music</CustomButton>
+        <CustomButton message="Uploading your data!">Upload data</CustomButton>
+      </div>
+      <div>
+        <h2>Click counter</h2>
+        <button onClick={handleClick}>Current: {clicks}</button>
+      </div>
+      <div>
+        <h2>Toggle section</h2>
+        <button onClick={handleToggle}>{isOpen ? "Hide" : "Show"}</button>
+        {isOpen && <p>Now you can see me!</p>}
       </div>
     </>
   );
