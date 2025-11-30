@@ -14,6 +14,9 @@ const MyButton = () => {
 };
 
 function App() {
+  const handleClick = (evt) => {
+    console.log(evt);
+  };
   return (
     <>
       <div>
@@ -24,6 +27,10 @@ function App() {
         <button onClick={() => alert("You clicked me!")}>
           Click me again!!!
         </button>
+      </div>
+      <div>
+        <button onClick={handleClick}>First button</button>
+        <button onClick={(evt) => console.log(evt)}>Second button</button>
       </div>
     </>
   );
