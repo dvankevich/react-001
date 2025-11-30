@@ -21,6 +21,9 @@ function App() {
 
         <Product />
         <MyButton />
+        <button onClick={() => alert("You clicked me!")}>
+          Click me again!!!
+        </button>
       </div>
     </>
   );
