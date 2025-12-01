@@ -18,6 +18,10 @@ const CustomButton = ({ message, children }) => {
   return <button onClick={() => alert(message)}>{children}</button>;
 };
 
+const ClickCounterSync = ({ value, onUpdate }) => {
+  return <button onClick={onUpdate}>Current: {value}</button>;
+};
+
 function App() {
   const [clicks, setClicks] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
@@ -38,10 +42,6 @@ function App() {
       setClicks(clicks + 1);
     };
 
-    return <button onClick={handleClick}>Current: {clicks}</button>;
-  };
-
-  const ClickCounterSync = () => {
     return <button onClick={handleClick}>Current: {clicks}</button>;
   };
 
@@ -99,8 +99,8 @@ function App() {
       </div>
       <div>
         <h2>Synchronized Click Counter</h2>
-        <ClickCounterSync />
-        <ClickCounterSync />
+        <ClickCounterSync value={clicks} onUpdate={handleClick} />
+        <ClickCounterSync value={clicks} onUpdate={handleClick} />
       </div>
       <div>
         <h2>State Object Update</h2>
