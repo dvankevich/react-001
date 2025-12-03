@@ -25,7 +25,7 @@ const App = () => {
   // Оголошуємо ефект
   useEffect(() => {
     document.title = `You clicked ${clicks} times`;
-  });
+  }, [clicks]);
 
   useEffect(() => {
     console.log("You can see me only once!");
