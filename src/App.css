@@ -18,6 +18,17 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+.simpleForm {
+  background-color: lightgrey;
+  width: 80%;
+  padding: 16px;
+  border: 1px solid black;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);

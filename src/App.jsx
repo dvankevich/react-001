@@ -1,6 +1,12 @@
 import "./App.css";
+import { useId } from "react";
 
 const LoginForm = ({ onLogin }) => {
+  const loginId = useId();
+  const passwordId = useId();
+
+  console.log(loginId, passwordId);
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
@@ -18,9 +24,11 @@ const LoginForm = ({ onLogin }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" name="login" />
-      <input type="password" name="password" />
+    <form className="simpleForm" onSubmit={handleSubmit}>
+      <label htmlFor={loginId}>Login</label>
+      <input type="text" name="login" id={loginId} />
+      <label htmlFor={passwordId}>Password</label>
+      <input type="password" name="password" id={passwordId} />
       <button type="submit">Login</button>
     </form>
   );
