@@ -37,6 +37,12 @@ const LangSwitcher = ({ value, onSelect }) => {
 
 function App() {
   const [lang, setLang] = useState("uk");
+  const [coffeeSize, setCoffeeSize] = useState("sm");
+
+  const handleSizeChange = (evt) => {
+    setCoffeeSize(evt.target.value);
+  };
+
   return (
     <>
       <div>
@@ -47,6 +53,39 @@ function App() {
         <h2>Language switcher</h2>
         <p>Selected language: {lang}</p>
         <LangSwitcher value={lang} onSelect={setLang} />
+      </div>
+      <div>
+        <h2>Select coffee size</h2>
+        <label>
+          <input
+            type="radio"
+            name="coffeeSize"
+            value="sm"
+            checked={coffeeSize === "sm"}
+            onChange={handleSizeChange}
+          />
+          Small
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="coffeeSize"
+            value="md"
+            checked={coffeeSize === "md"}
+            onChange={handleSizeChange}
+          />
+          Meduim
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="coffeeSize"
+            value="lg"
+            checked={coffeeSize === "lg"}
+            onChange={handleSizeChange}
+          />
+          Large
+        </label>
       </div>
     </>
   );
