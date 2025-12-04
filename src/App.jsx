@@ -43,6 +43,12 @@ function App() {
     setCoffeeSize(evt.target.value);
   };
 
+  const [hasAccepted, setHasAccepted] = useState(false);
+
+  const handleChange = (evt) => {
+    setHasAccepted(evt.target.checked);
+  };
+
   return (
     <>
       <div>
@@ -86,6 +92,26 @@ function App() {
           />
           Large
         </label>
+      </div>
+      <div>
+        <h2>CheckBox</h2>
+        <label>
+          <input
+            type="checkbox"
+            name="terms"
+            checked={hasAccepted}
+            onChange={handleChange}
+          />
+          I accept terms and conditions
+        </label>
+        <button
+          type="button"
+          title="accept terms"
+          disabled={!hasAccepted}
+          onClick={() => console.log("Proceed next")}
+        >
+          Proceed
+        </button>
       </div>
     </>
   );
