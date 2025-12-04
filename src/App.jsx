@@ -1,51 +1,27 @@
 import "./App.css";
-import { useId } from "react";
+import { useState } from "react";
 
-const LoginForm = ({ onLogin }) => {
-  const loginId = useId();
-  const passwordId = useId();
+const SearchBar = () => {
+  const [inputValue, setInputValue] = useState("");
 
-  console.log(loginId, passwordId);
-
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-
-    const form = evt.target;
-    const { login, password } = form.elements;
-    console.log("form.elements", form.elements);
-
-    // Викликаємо пропс onLogin
-    onLogin({
-      login: login.value,
-      password: password.value,
-    });
-
-    form.reset();
+  const handleChange = (evt) => {
+    setInputValue(evt.target.value);
   };
 
   return (
-    <form className="simpleForm" onSubmit={handleSubmit}>
-      <label htmlFor={loginId}>Login</label>
-      <input type="text" name="login" id={loginId} />
-      <label htmlFor={passwordId}>Password</label>
-      <input type="password" name="password" id={passwordId} />
-      <button type="submit">Login</button>
-    </form>
+    <div>
+      <input type="text" value={inputValue} onChange={handleChange} />
+      <p>{inputValue}</p>
+    </div>
   );
-};
-
-const handleLogin = (userData) => {
-  // Виконуємо необхідні операції з даними
-  console.log(userData);
 };
 
 function App() {
   return (
     <>
       <div>
-        <h1>Please login to your account!</h1>
-        {/* Передаємо колбек як пропс форми */}
-        <LoginForm onLogin={handleLogin} />
+        <h2>Search bar</h2>
+        <SearchBar />
       </div>
     </>
   );
