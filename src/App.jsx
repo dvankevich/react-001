@@ -35,6 +35,49 @@ const LangSwitcher = ({ value, onSelect }) => {
   );
 };
 
+const LoginForm = () => {
+  const [values, setValues] = useState({
+    login: "",
+    password: "",
+  });
+
+  const handleChange = (evt) => {
+    setValues({
+      ...values,
+      [evt.target.name]: evt.target.value,
+    });
+  };
+
+  const handleSumit = (evt) => {
+    evt.preventDefault();
+
+    console.log(values);
+
+    setValues({
+      login: "",
+      password: "",
+    });
+  };
+
+  return (
+    <form className="simpleForm" onSubmit={handleSumit}>
+      <input
+        type="text"
+        name="login"
+        value={values.login}
+        onChange={handleChange}
+      />
+      <input
+        type="password"
+        name="password"
+        value={values.password}
+        onChange={handleChange}
+      />
+      <button type="submit">Login</button>
+    </form>
+  );
+};
+
 function App() {
   const [lang, setLang] = useState("uk");
   const [coffeeSize, setCoffeeSize] = useState("sm");
@@ -112,6 +155,10 @@ function App() {
         >
           Proceed
         </button>
+      </div>
+      <div>
+        <h2>Login form</h2>
+        <LoginForm />
       </div>
     </>
   );
