@@ -15,6 +15,7 @@ const override = {
 const App = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     async function fetchArticles() {
@@ -28,6 +29,7 @@ const App = () => {
       } catch (error) {
         // Тут будемо обробляти помилку
         console.error("Error fetching articles:", error);
+        setError(true);
       } finally {
         // 2. Встановлюємо індикатор в false після запиту
         setLoading(false);
@@ -49,6 +51,9 @@ const App = () => {
           aria-label="Loading Spinner"
           data-testid="loader"
         />
+      )}
+      {error && (
+        <p>Whoops, something went wrong! Please try reloading this page!</p>
       )}
       {articles.length > 0 && <ArticleList items={articles} />}
     </div>
