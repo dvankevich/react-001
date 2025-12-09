@@ -4,6 +4,14 @@ import axios from "axios";
 
 import ArticleList from "./ArticleList";
 
+import { ClipLoader } from "react-spinners";
+
+const override = {
+  display: "block",
+  margin: "0 auto",
+  borderColor: "blue",
+};
+
 const App = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -32,7 +40,16 @@ const App = () => {
   return (
     <div>
       <h1>Latest articles</h1>
-      {loading && <p>Loading data, please wait...</p>}
+      {loading && (
+        <ClipLoader
+          color={"green"}
+          loading={loading}
+          cssOverride={override}
+          size={80}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      )}
       {articles.length > 0 && <ArticleList items={articles} />}
     </div>
   );
