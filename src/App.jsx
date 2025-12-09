@@ -1,10 +1,11 @@
 import "./App.css";
-import { useEffect, useState } from "react";
-import axios from "axios";
-
-import ArticleList from "./ArticleList";
-
+import { useState } from "react";
 import { ClipLoader } from "react-spinners";
+
+import ArticleList from "./components/ArticleList.jsx";
+import SearchForm from "./components/SearchForm.jsx";
+
+import { fetchArticlesWithTopic } from "./articles-api.js";
 
 const override = {
   display: "block",
@@ -17,31 +18,24 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  useEffect(() => {
-    async function fetchArticles() {
-      try {
-        // 1. Встановлюємо індикатор в true перед запитом
-        setLoading(true);
-        const response = await axios.get(
-          "https://hn.algolia.com/api/v1/search?query=react"
-        );
-        setArticles(response.data.hits);
-      } catch (error) {
-        // Тут будемо обробляти помилку
-        console.error("Error fetching articles:", error);
-        setError(true);
-      } finally {
-        // 2. Встановлюємо індикатор в false після запиту
-        setLoading(false);
-      }
+  const handleSearch = async (topic) => {
+    try {
+      setArticles([]);
+      setError(false);
+      setLoading(true);
+      const data = await fetchArticlesWithTopic(topic);
+      setArticles(data);
+    } catch (error) {
+      console.error("Error fetching articles:", error);
+      setError(true);
+    } finally {
+      setLoading(false);
     }
-
-    fetchArticles();
-  }, []);
+  };
 
   return (
     <div>
-      <h1>Latest articles</h1>
+      <SearchForm onSearch={handleSearch} />
       {loading && (
         <ClipLoader
           color={"green"}
