@@ -24,6 +24,8 @@ const App = () => {
       setError(false);
       setLoading(true);
       const data = await fetchArticlesWithTopic(topic);
+      console.log(data);
+
       setArticles(data);
     } catch (error) {
       console.error("Error fetching articles:", error);
